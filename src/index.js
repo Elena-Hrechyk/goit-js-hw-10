@@ -28,7 +28,6 @@ function onSerchCountry(evt) {
           countryList.innerHTML = '';
           countryInfo.innerHTML = '';
         } else if (data.length === 1) {
-          console.log(data[0]);
           countryInfo.innerHTML = createCountryInfo(data[0]);
           countryList.innerHTML = '';
         } else if (data.length > 2 && data.length < 10) {

@@ -34,7 +34,7 @@ export function createCountryInfo({
       <li>
         <p><span class="detail-info">Languages:</span> ${Object.values(
           languages
-        )}</p>
+        ).join(', ')}</p>
       </li>
     </ul>`;
 }
