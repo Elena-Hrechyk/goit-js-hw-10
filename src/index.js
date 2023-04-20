@@ -3,8 +3,9 @@ import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 import Debounce from 'lodash.debounce';
 import { fetchCountries } from './js/fetchCountries';
-import { createSerchList } from './js/createMarkup';
+import { createSearchList } from './js/createMarkup';
 import { createCountryInfo } from './js/createMarkup';
+import { clearMarkup } from './js/createMarkup';
 
 const input = document.querySelector('input[id="search-box"]');
 const countryList = document.querySelector('.country-list');
@@ -16,8 +17,7 @@ input.addEventListener('input', Debounce(onSerchCountry, delay));
 function onSerchCountry(evt) {
   const searchCountry = evt.target.value.trim();
   if (searchCountry === '') {
-    countryList.innerHTML = '';
-    countryInfo.innerHTML = '';
+    clearMarkup();
   } else {
     fetchCountries(searchCountry)
       .then(data => {
@@ -25,17 +25,15 @@ function onSerchCountry(evt) {
           Notiflix.Notify.info(
             `Too many matches found. Please enter a more specific name.`
           );
-          countryList.innerHTML = '';
-          countryInfo.innerHTML = '';
+          clearMarkup();
         } else if (data.length === 1) {
           countryInfo.innerHTML = createCountryInfo(data[0]);
           countryList.innerHTML = '';
         } else if (data.length > 2 && data.length < 10) {
-          countryList.innerHTML = createSerchList(data);
+          countryList.innerHTML = createSearchList(data);
           countryInfo.innerHTML = '';
         } else {
-          countryList.innerHTML = '';
-          countryInfo.innerHTML = '';
+          clearMarkup();
         }
       })
       .catch(() =>

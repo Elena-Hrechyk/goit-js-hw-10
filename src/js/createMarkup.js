@@ -1,4 +1,5 @@
-export function createSerchList(arr) {
+// додавання розмітки при пошуку країни (від 2 до 10 варіантів)
+export function createSearchList(arr) {
   console.log(arr);
   return arr
     .map(
@@ -13,6 +14,7 @@ export function createSerchList(arr) {
     .join('');
 }
 
+// розмітка при находженні єдиного варіанту
 export function createCountryInfo({
   capital,
   population,
@@ -37,4 +39,10 @@ export function createCountryInfo({
         ).join(', ')}</p>
       </li>
     </ul>`;
+}
+
+// очищення розмітки
+export function clearMarkup() {
+  countryList.innerHTML = '';
+  countryInfo.innerHTML = '';
 }
