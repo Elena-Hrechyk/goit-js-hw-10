@@ -1,3 +1,6 @@
+const countryList = document.querySelector('.country-list');
+const countryInfo = document.querySelector('.country-info');
+
 // додавання розмітки при пошуку країни (від 2 до 10 варіантів)
 export function createSearchList(arr) {
   console.log(arr);
