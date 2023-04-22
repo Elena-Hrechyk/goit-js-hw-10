@@ -5,7 +5,8 @@ export function fetchCountries(name) {
 
   return fetch(`${BASE_URL}/${ENDPOINT}/${name}?fields=${FILTER_KEYS}`).then(
     resp => {
-      if (!resp.ok) {
+      console.log(resp);
+      if (resp.status === 404) {
         throw new Error(resp.statusText);
       }
       return resp.json();
